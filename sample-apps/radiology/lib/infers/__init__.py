@@ -16,3 +16,7 @@ from .localization_vertebra import LocalizationVertebra
 from .segmentation import Segmentation
 from .segmentation_spleen import SegmentationSpleen
 from .segmentation_vertebra import SegmentationVertebra
+
+# multi-stage teeth segmentation
+from .localization_teeth import LocalizationTeeth
+from .segmentation_teeth import SegmentationTeeth
