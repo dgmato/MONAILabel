@@ -18,6 +18,7 @@ import lib.configs
 from lib.activelearning import Last
 from lib.infers.deepgrow_pipeline import InferDeepgrowPipeline
 from lib.infers.vertebra_pipeline import InferVertebraPipeline
+from lib.infers.dental_pipeline import InferDentalPipeline
 
 import monailabel
 from monailabel.interfaces.app import MONAILabelApp
@@ -188,6 +189,23 @@ class MyApp(MONAILabelApp):
                 task_seg_vertebra=infers["segmentation_vertebra"],  # third stage
                 description="Combines three stage for vertebra segmentation",
             )
+            
+        #################################################
+        # Pipeline based on existing infers for teeth segmentation
+        # Stages:
+        # 1/ localization teeth
+        # 2/ segmentation teeth
+        #################################################
+        if (
+            infers.get("localization_teeth")
+            and infers.get("segmentation_teeth")
+        ):
+            infers["dental_pipeline"] = InferDentalPipeline(
+                task_loc_teeth=infers["localization_teeth"],  # first stage
+                task_seg_teeth=infers["segmentation_teeth"],  # second stage
+                description="Combines two stages for teeth segmentation",
+            )    
+        
         logger.info(infers)
         return infers
 
