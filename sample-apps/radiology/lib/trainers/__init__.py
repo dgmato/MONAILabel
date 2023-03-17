@@ -20,3 +20,6 @@ from .segmentation_vertebra import SegmentationVertebra
 # multi-stage teeth segmentation
 from .localization_teeth import LocalizationTeeth
 from .segmentation_teeth import SegmentationTeeth
+
+# mandible and nerve segmentation
+from .segmentation_mandible import SegmentationMandible
